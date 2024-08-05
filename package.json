@@ -1,0 +1,26 @@
+{
+  "name": "global-tours-backend",
+  "version": "1.0.0",
+  "description": "Backend in NodeJS for Global Tours",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/necmigunduz/global_tours_backend.git"
+  },
+  "keywords": [
+    "global",
+    "tours",
+    "backend",
+    "node",
+    "express"
+  ],
+  "author": "Necmi Gunduz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/necmigunduz/global_tours_backend/issues"
+  },
+  "homepage": "https://github.com/necmigunduz/global_tours_backend#readme"
+}
