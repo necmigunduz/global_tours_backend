@@ -26,3 +26,5 @@ const serializeUser = async (data) => {
 
     return user;
 };
+
+module.exports = serializeUser;
