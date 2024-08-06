@@ -1,21 +1,32 @@
 const { plainToInstance } = require('class-transformer');
-const { IsString, validate } = require('class-validator');
+const { IsString, validateSync } = require('class-validator');
 
 class CompanySerializer {
-    @IsString()
-    name;
+    constructor(name, description) {
+        this.name = name;
+        this.description = description;
+    }
 
-    @IsString()
-    description;
-};
+    // Custom validation function
+    validate() {
+        const errors = [];
+        if (typeof this.name !== 'string') {
+            errors.push('Name must be a string');
+        }
+        if (typeof this.description !== 'string') {
+            errors.push('Description must be a string');
+        }
+        return errors;
+    }
+}
 
-const serializeCompany = async (data) => {
+const serializeCompany = (data) => {
     const company = plainToInstance(CompanySerializer, data);
-    const errors = await validate(company);
+    const errors = company.validate();
     
     if (errors.length > 0) {
-        throw new Error(`Validation failed: ${errors}`);
-    };
+        throw new Error(`Validation failed: ${errors.join(', ')}`);
+    }
     
     return company;
 };

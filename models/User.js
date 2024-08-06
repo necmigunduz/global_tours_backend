@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose({
+const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ['tour_guide', 'tourist']},
+    role: { type: String, enum: ['tour_guide', 'tourist'], default: 'tourist' },
 });
 
 const saltRounds = 10;
 
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {  // use function keyword to get access to `this`
     if (!this.isModified('password')) {
         return next();
     }
@@ -24,8 +24,9 @@ userSchema.pre('save', async (next) => {
     }
 });
 
-userSchema.methods.comparePassword = async (password) => {
+userSchema.methods.comparePassword = async function (password) {  // use function keyword to get access to `this`
     return bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;
