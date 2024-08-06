@@ -6,7 +6,7 @@ const createCompany = async (req, res) => {
         const companyInfo = await serializeCompany(req.body);
         const company = new Company({
             ...companyInfo,
-            owner: req.user_id,
+            owner: req.body.user_id,
         });
 
         await company.save();
