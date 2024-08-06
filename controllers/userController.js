@@ -1,7 +1,9 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const serializeUser = require('../serializers/UserSerializer');
+
 const secretJWT = process.env.JWT_SECRET;
+
 const register = async (req, res) => {
     try {
         const userInfo = await serializeUser(req.body);
