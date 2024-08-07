@@ -18,4 +18,9 @@ app.use('/api', userRoutes);
 app.use('/api', companyRoutes);
 app.use('/api', tourRoutes);
 
-connectDB(app)
+connectDB();
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+});
